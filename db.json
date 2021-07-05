@@ -3,23 +3,20 @@
     {
       "id": 1,
       "email": "main@123.com",
-      "subscription": "Advanced"
+      "subscription": "Advanced",
+      "password": "hyde37Unfold93piazzas"
     },
     {
       "id": 2,
       "email": "richie@bucks.com",
-      "subscription": "Pro"
+      "subscription": "Pro",
+      "password": "Expunge15Alarm56voicer"
     },
     {
       "id": 3,
       "email": "indie@artist.com",
-      "subscription": "Basic"
-    },
-    {
-      "email": "switfoth@gmail.com",
       "subscription": "Basic",
-      "password": "gadsgad",
-      "id": 4
+      "password": "bunkmate23sloths92krieger"
     }
   ]
 }

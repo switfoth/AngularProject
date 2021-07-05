@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Sub } from "../../Sub"
+import { FormControl, FormGroup } from "@angular/forms"
 
 @Component({
   selector: 'app-add-sub',
@@ -9,34 +10,42 @@ import { Sub } from "../../Sub"
 export class AddSubComponent implements OnInit {
   @Output() onAddSub: EventEmitter<Sub> = new EventEmitter();
 
+  addSubForm = new FormGroup({
+    email!: new FormControl(''),
+    subscription!: new FormControl(''),
+    password!: new FormControl(''),
+    confirmPassword!: new FormControl(''),
+  })
+
   email!: string;
   subscription!: string;
   password!: string;
   confirmPassword!: string;
 
+
   constructor() { }
 
   ngOnInit(): void {
+    this.subscription = 'Advanced';
+  }
+
+  onClear() {
+    this.email = '';
+    this.subscription = 'Advanced';
+    this.password = '';
+    this.confirmPassword = '';
   }
 
   onSubmit() {
 
-    if(!this.email) {
-      alert("Please enter a valid e-mail address");
-      return
-    }
-    if(!this.password) {
-      alert("Please enter a valid password")
-      return
-    }
-    if(!this.confirmPassword){
-      alert("Please confirm your password")
-      return
-    }
-    if(this.password !== this.confirmPassword){
-      alert("Password and confirmed password do not match")
-      return
-    }
+    // if(!this.email) {
+    // }
+    // if(!this.password) {
+    // }
+    // if(!this.confirmPassword){
+    // }
+    // if(this.password !== this.confirmPassword){
+    // }
 
     const newSub = {
       email: this.email,

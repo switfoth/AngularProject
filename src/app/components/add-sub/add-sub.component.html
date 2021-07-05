@@ -1,11 +1,11 @@
-<form class="add-form" (ngSubmit)="onSubmit()">
+<form class="add-form" (ngSubmit)="onSubmit()" [formGroup]="addSubForm">
     <div class="form-control">
         <label for="text">E-Mail</label>
-        <input type="text" name="email" [(ngModel)]="email" id="email" placeholder="Enter E-Mail Address"/>
+        <input type="email" name="email" [(ngModel)]="email" id="email" placeholder="Enter E-Mail Address" formControlName="email"/>
     </div>
     <div class="form-control">
         <label for="subscription">Subsription Type</label>
-        <select id="subscription" name="subscription" [(ngModel)]="subscription">
+        <select id="subscription" name="subscription" [(ngModel)]="subscription" formControlName="subscription">
             <option value="Advanced">Advanced</option>
             <option value="Pro">Pro</option>
             <option value="Basic">Basic</option>
@@ -13,11 +13,11 @@
     </div>
     <div class="form-control">
         <label for="password">Password</label>
-        <input type="text" name="password" [(ngModel)]="password" id="password" placeholder="Enter a Password"/>
+        <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="Enter a Password" formControlName="password"/>
     </div>
     <div class="form-control">
         <label for="confirmPassword">Confirm Password</label>
-        <input type="text" name="confirmPassword" [(ngModel)]="confirmPassword" id="confirm-password" placeholder="Please Confirm Password"/>
+        <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" id="confirm-password" placeholder="Please Confirm Password" formControlName="confirmPassword"/>
     </div>
-    <input type="submit" value="Submit" class="btn btn-block"/> <input type="submit" value="Clear" class="btn btn-block"/>
+    <button type="submit" value="Submit" class="btn btn-block">Submit</button> <div class="btn btn-block" style="text-align: center;" (click)="onClear()">Clear</div>
 </form>
