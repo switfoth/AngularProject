@@ -1,4 +1,6 @@
-export const SUBS = [
+import {Sub} from './Sub'
+
+export const SUBS: Sub[] = [
     {
         id: 1,
         email: 'main@123.com',

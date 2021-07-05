@@ -4,6 +4,7 @@
 // password confirmation field - if the passwords do not match, submit should not be clickable
 // submit button and clear button - submit button has to verify all fields have valid data, clear button is active at all times.
 export interface Sub {
-    id: number,
-
+    id?: number;
+    email: string;
+    subscription: string;
 }
