@@ -1,4 +1,4 @@
 <div class="sub">
-    <h3>{{sub.email}} <fa-icon [ngStyle]="{'color': 'red'}" [icon]="faTimes"></fa-icon></h3>
+    <h3>{{sub.email}} <fa-icon [ngStyle]="{'color': 'red'}" [icon]="faTimes" (click)="onDelete(sub)"></fa-icon></h3>
     <p>{{sub.subscription}}</p>
 </div>

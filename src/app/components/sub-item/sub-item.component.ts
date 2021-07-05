@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Sub} from '../../Sub';
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 
@@ -11,6 +11,8 @@ export class SubItemComponent implements OnInit {
   @Input()
   sub!: Sub;
 
+  @Output() onDeleteSub: EventEmitter<Sub> = new EventEmitter();
+
   faTimes = faTimes;
 
   constructor() { }
@@ -18,4 +20,7 @@ export class SubItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDelete(sub: any) {
+    this.onDeleteSub.emit(sub)
+  }
 }
