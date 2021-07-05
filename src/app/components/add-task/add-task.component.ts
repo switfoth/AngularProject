@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit {
+  email!: string;
+  subscription!: string;
+  password!: string;
+  confirmPassword!: string;
 
   constructor() { }
 
