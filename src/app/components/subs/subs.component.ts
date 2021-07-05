@@ -16,4 +16,7 @@ export class SubsComponent implements OnInit {
     this.subService.getSubs().subscribe((subs) => this.subs = subs) ;
   }
 
+  deleteSub(sub: Sub){
+    this.subService.deleteSub(sub).subscribe(() => this.subs = this.subs.filter(s => s.id !== sub.id)) ;
+  }
 }

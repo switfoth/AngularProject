@@ -15,4 +15,9 @@ export class SubService {
   getSubs(): Observable<Sub[]> {
     return this.http.get<Sub[]>(this.apiUrl)
   }
+
+  deleteSub(sub: Sub): Observable<Sub> {
+    const url = `${this.apiUrl}/${sub.id}`;
+    return this.http.delete<Sub>(url);
+  }
 }
