@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Sub} from '../Sub'
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +25,9 @@ export class SubService {
   deleteSub(sub: Sub): Observable<Sub> {
     const url = `${this.apiUrl}/${sub.id}`;
     return this.http.delete<Sub>(url);
+  }
+
+  addSub(sub: Sub): Observable<Sub> {
+    return this.http.post<Sub>(this.apiUrl, sub, httpOptions)
   }
 }

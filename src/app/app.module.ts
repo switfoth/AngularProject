@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { SubsComponent } from './components/subs/subs.component';
 import { SubItemComponent } from './components/sub-item/sub-item.component';
-import { AddTaskComponent } from './components/add-task/add-task.component';
+import { AddSubComponent } from './components/add-sub/add-sub.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     ButtonComponent,
     SubsComponent,
     SubItemComponent,
-    AddTaskComponent
+    AddSubComponent
   ],
   imports: [
     BrowserModule,

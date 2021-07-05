@@ -7,4 +7,5 @@ export interface Sub {
     id?: number;
     email: string;
     subscription: string;
+    password: string;
 }

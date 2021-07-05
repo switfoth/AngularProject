@@ -1,2 +1,2 @@
-<app-add-task></app-add-task>
+<app-add-sub (onAddSub)="addSub($event)"></app-add-sub>
 <app-sub-item class="div" *ngFor="let sub of subs" [sub]="sub" (onDeleteSub)="deleteSub(sub)"></app-sub-item>
