@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Sub } from "../../Sub"
 import { FormControl, FormGroup, Validators } from "@angular/forms"
-import { SubService } from 'src/app/services/sub.service';
 
 @Component({
   selector: 'app-add-sub',
