@@ -1,4 +1,25 @@
 <div class="sub">
-    <h3>{{sub.email}} <fa-icon [ngStyle]="{'color': 'red'}" [icon]="faTimes" (click)="onDelete(sub)"></fa-icon></h3>
-    <p>{{sub.subscription}}</p>
+    <mat-table [dataSource]="subs" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> E-Mail Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subscription">
+          <th mat-header-cell *matHeaderCellDef> Subscription Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.subscription}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created">
+          <th mat-header-cell *matHeaderCellDef> Created Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </mat-table>
 </div>

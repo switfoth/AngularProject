@@ -1,11 +1,15 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Sub } from "../../Sub"
+import { FormControl, FormGroup, Validators } from "@angular/forms"
+import { SubService } from 'src/app/services/sub.service';
 
 @Component({
   selector: 'app-add-sub',
   templateUrl: './add-sub.component.html',
   styleUrls: ['./add-sub.component.css']
 })
+
+
 export class AddSubComponent implements OnInit {
   @Output() onAddSub: EventEmitter<Sub> = new EventEmitter();
 
@@ -13,43 +17,64 @@ export class AddSubComponent implements OnInit {
   subscription!: string;
   password!: string;
   confirmPassword!: string;
+  errorFound!: boolean;
+  errorMessage!: string;
 
-  constructor() { }
+
+  addSubForm = new FormGroup({
+    email!: new FormControl('', Validators.compose([Validators.email, Validators.required])),
+    subscription!: new FormControl('Advanced'),
+    password!: new FormControl('', Validators.compose([Validators.required])),
+    confirmPassword!: new FormControl('', Validators.compose([Validators.required]))
+  });
+
+  constructor () {
+
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onClear() {
+    this.errorFound = false
+    this.addSubForm.reset();
+  }
 
-    if(!this.email) {
-      alert("Please enter a valid e-mail address");
+  getData() {
+    let pass = this.addSubForm.value.password
+    let confirmPass = this.addSubForm.value.confirmPassword
+    if( pass.length < 8 ){
+      this.errorFound = true;
+      this.errorMessage = "Password must be at least 8 characters long"
       return
     }
-    if(!this.password) {
-      alert("Please enter a valid password")
+    if ( pass.search(/[a-zA-Z0-9]/) < 0 ){
+      this.errorFound = true;
+      this.errorMessage = "Password must contain at least one alphanumeric character"
       return
     }
-    if(!this.confirmPassword){
-      alert("Please confirm your password")
+    if ( pass.search(/[!@#$%^&*()_+{}|[\]\:"<>?;',./*-+]/) < 0){
+      this.errorFound = true;
+      this.errorMessage = "Password must contain a special character"
       return
     }
-    if(this.password !== this.confirmPassword){
-      alert("Password and confirmed password do not match")
+    if ( pass !== confirmPass ){
+      this.errorFound = true;
+      this.errorMessage = "Confirmed password does not match password"
       return
     }
-
     const newSub = {
-      email: this.email,
-      subscription: this.subscription,
-      password: this.password
+      email: this.addSubForm.value.email,
+      subscription: this.addSubForm.value.subscription,
+      password: this.addSubForm.value.password,
+      created: new Date()
     }
-
-    this.onAddSub.emit(newSub);
-
-    this.email = '';
-    this.password = '';
-    this.confirmPassword = '';
-
+    this.onAddSub.emit(newSub)
+    this.errorFound = false
+    this.addSubForm.reset();
+  }
+  get validationMessage() {
+    return this.addSubForm.controls;
   }
 
 }
