@@ -1,0 +1,17 @@
+#table {
+    max-width: 50%;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid steelblue;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.mat-cell {
+    padding: 80px 80px 80px 0;
+}
+
+.mat-header-cell {
+padding: 80px 80px 80px 0;
+}

@@ -21,8 +21,29 @@
     {
       "email": "switfoth@gmail.com",
       "subscription": "Advanced",
-      "password": "asdas",
+      "password": "buttsbutt!",
       "id": 4
+    },
+    {
+      "email": "joe@funstuff.com",
+      "subscription": "Basic",
+      "password": "jadedprog!",
+      "created": "2021-07-06T03:02:58.392Z",
+      "id": 5
+    },
+    {
+      "email": "switfoth@gmail.com",
+      "subscription": "Pro",
+      "password": "waglNAGL99!",
+      "created": "2021-07-06T03:17:19.036Z",
+      "id": 6
+    },
+    {
+      "email": "poop@doop.com",
+      "subscription": "Pro",
+      "password": "boombutt!",
+      "created": "2021-07-06T03:19:10.811Z",
+      "id": 7
     }
   ]
 }

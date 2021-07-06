@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Sub } from "../../Sub"
 import { FormControl, FormGroup, Validators } from "@angular/forms"
+import { SubService } from 'src/app/services/sub.service';
 
 @Component({
   selector: 'app-add-sub',
@@ -27,11 +28,15 @@ export class AddSubComponent implements OnInit {
     confirmPassword!: new FormControl('', Validators.compose([Validators.required]))
   });
 
+  constructor () {
+
+  }
 
   ngOnInit(): void {
   }
 
   onClear() {
+    this.errorFound = false
     this.addSubForm.reset();
   }
 
@@ -43,22 +48,29 @@ export class AddSubComponent implements OnInit {
       this.errorMessage = "Password must be at least 8 characters long"
       return
     }
-    if ( pass.search(/[a-zA-Z0-9]/) ){
+    if ( pass.search(/[a-zA-Z0-9]/) < 0 ){
       this.errorFound = true;
       this.errorMessage = "Password must contain at least one alphanumeric character"
       return
     }
-    if ( pass.search(/[^0-9a-zA-Z *]/)){
+    if ( pass.search(/[!@#$%^&*()_+{}|[\]\:"<>?;',./*-+]/) < 0){
       this.errorFound = true;
       this.errorMessage = "Password must contain a special character"
+      return
+    }
+    if ( pass !== confirmPass ){
+      this.errorFound = true;
+      this.errorMessage = "Confirmed password does not match password"
       return
     }
     const newSub = {
       email: this.addSubForm.value.email,
       subscription: this.addSubForm.value.subscription,
-      password: this.addSubForm.value.password
+      password: this.addSubForm.value.password,
+      created: new Date()
     }
     this.onAddSub.emit(newSub)
+    this.errorFound = false
     this.addSubForm.reset();
   }
   get validationMessage() {

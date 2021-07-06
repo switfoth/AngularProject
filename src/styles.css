@@ -74,3 +74,11 @@ body {
   flex: 2;
   height: 20px;
 }
+
+.mat-cell {
+  padding: 80px 80px 80px 0;
+}
+
+.mat-header-cell {
+  padding: 80px 80px 80px 0;
+}
