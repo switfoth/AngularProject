@@ -1,23 +1,31 @@
-<form class="add-form" (ngSubmit)="onSubmit()" [formGroup]="addSubForm">
+<form class="add-form" [formGroup]="addSubForm" (ngSubmit)="getData()">
+    <span class="error" *ngIf="validationMessage.email.invalid && validationMessage.email.touched">Please provide a valid email address</span>
+    <span class="error" *ngIf="validationMessage.password.invalid && validationMessage.password.touched"><br>Please provide a password</span>
+    <span class="error" *ngIf="validationMessage.confirmPassword.invalid && validationMessage.confirmPassword.touched"><br>Please confirm your password</span>
+    <span class="error" *ngIf="errorFound">{{errorMessage}}</span>
     <div class="form-control">
         <label for="text">E-Mail</label>
-        <input type="email" name="email" [(ngModel)]="email" id="email" placeholder="Enter E-Mail Address" formControlName="email"/>
+        <input type="email" name="email" id="email" placeholder="Enter E-Mail Address" formControlName="email" ngModel/>
+        <br><span class="error" *ngIf="validationMessage.email.invalid && validationMessage.email.touched">Please provide a valid email address</span>
     </div>
     <div class="form-control">
         <label for="subscription">Subsription Type</label>
-        <select id="subscription" name="subscription" [(ngModel)]="subscription" formControlName="subscription">
-            <option value="Advanced">Advanced</option>
+        <select id="subscription" type="subscription" name="subscription" formControlName="subscription" ngModel>
+            <option value="Advanced" selected>Advanced</option>
             <option value="Pro">Pro</option>
             <option value="Basic">Basic</option>
         </select>
+        <br><span class="error" *ngIf="validationMessage.subscription.invalid && validationMessage.subscription.touched">Please select a subscription type</span>
     </div>
     <div class="form-control">
         <label for="password">Password</label>
-        <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="Enter a Password" formControlName="password"/>
+        <input type="password" name="password" id="password" placeholder="Enter a Password" formControlName="password" ngModel/>
+        <br><span class="error" *ngIf="validationMessage.password.invalid && validationMessage.password.touched">Please provide a password</span>
     </div>
     <div class="form-control">
         <label for="confirmPassword">Confirm Password</label>
-        <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" id="confirm-password" placeholder="Please Confirm Password" formControlName="confirmPassword"/>
+        <input type="password" name="confirmPassword" id="confirm-password" placeholder="Please Confirm Password" formControlName="confirmPassword" ngModel/>
+        <br><span class="error" *ngIf="validationMessage.confirmPassword.invalid && validationMessage.confirmPassword.touched">Please confirm your password and/or make sure that it matches the password</span>
     </div>
-    <button type="submit" value="Submit" class="btn btn-block">Submit</button> <div class="btn btn-block" style="text-align: center;" (click)="onClear()">Clear</div>
+    <button [disabled]="addSubForm.invalid" type="submit" value="Submit" class="btn btn-block">Submit</button> <div class="btn btn-block" style="text-align: center;" (click)="addSubForm.reset()">Clear</div>
 </form>

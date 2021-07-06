@@ -1,64 +1,68 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Sub } from "../../Sub"
-import { FormControl, FormGroup } from "@angular/forms"
+import { FormControl, FormGroup, Validators } from "@angular/forms"
 
 @Component({
   selector: 'app-add-sub',
   templateUrl: './add-sub.component.html',
   styleUrls: ['./add-sub.component.css']
 })
+
+
 export class AddSubComponent implements OnInit {
   @Output() onAddSub: EventEmitter<Sub> = new EventEmitter();
-
-  addSubForm = new FormGroup({
-    email!: new FormControl(''),
-    subscription!: new FormControl(''),
-    password!: new FormControl(''),
-    confirmPassword!: new FormControl(''),
-  })
 
   email!: string;
   subscription!: string;
   password!: string;
   confirmPassword!: string;
+  errorFound!: boolean;
+  errorMessage!: string;
 
 
-  constructor() { }
+  addSubForm = new FormGroup({
+    email!: new FormControl('', Validators.compose([Validators.email, Validators.required])),
+    subscription!: new FormControl('Advanced'),
+    password!: new FormControl('', Validators.compose([Validators.required])),
+    confirmPassword!: new FormControl('', Validators.compose([Validators.required]))
+  });
+
 
   ngOnInit(): void {
-    this.subscription = 'Advanced';
   }
 
   onClear() {
-    this.email = '';
-    this.subscription = 'Advanced';
-    this.password = '';
-    this.confirmPassword = '';
+    this.addSubForm.reset();
   }
 
-  onSubmit() {
-
-    // if(!this.email) {
-    // }
-    // if(!this.password) {
-    // }
-    // if(!this.confirmPassword){
-    // }
-    // if(this.password !== this.confirmPassword){
-    // }
-
-    const newSub = {
-      email: this.email,
-      subscription: this.subscription,
-      password: this.password
+  getData() {
+    let pass = this.addSubForm.value.password
+    let confirmPass = this.addSubForm.value.confirmPassword
+    if( pass.length < 8 ){
+      this.errorFound = true;
+      this.errorMessage = "Password must be at least 8 characters long"
+      return
     }
-
-    this.onAddSub.emit(newSub);
-
-    this.email = '';
-    this.password = '';
-    this.confirmPassword = '';
-
+    if ( pass.search(/[a-zA-Z0-9]/) ){
+      this.errorFound = true;
+      this.errorMessage = "Password must contain at least one alphanumeric character"
+      return
+    }
+    if ( pass.search(/[^0-9a-zA-Z *]/)){
+      this.errorFound = true;
+      this.errorMessage = "Password must contain a special character"
+      return
+    }
+    const newSub = {
+      email: this.addSubForm.value.email,
+      subscription: this.addSubForm.value.subscription,
+      password: this.addSubForm.value.password
+    }
+    this.onAddSub.emit(newSub)
+    this.addSubForm.reset();
+  }
+  get validationMessage() {
+    return this.addSubForm.controls;
   }
 
 }

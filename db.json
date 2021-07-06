@@ -17,6 +17,12 @@
       "email": "indie@artist.com",
       "subscription": "Basic",
       "password": "bunkmate23sloths92krieger"
+    },
+    {
+      "email": "switfoth@gmail.com",
+      "subscription": "Advanced",
+      "password": "asdas",
+      "id": 4
     }
   ]
 }
