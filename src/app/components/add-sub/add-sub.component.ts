@@ -19,10 +19,9 @@ export class AddSubComponent implements OnInit {
   errorFound!: boolean;
   errorMessage!: string;
 
-
   addSubForm = new FormGroup({
     email!: new FormControl('', Validators.compose([Validators.email, Validators.required])),
-    subscription!: new FormControl('Advanced'),
+    subscription!: new FormControl(''),
     password!: new FormControl('', Validators.compose([Validators.required])),
     confirmPassword!: new FormControl('', Validators.compose([Validators.required]))
   });
@@ -32,6 +31,7 @@ export class AddSubComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   onClear() {
